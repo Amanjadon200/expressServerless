@@ -2,7 +2,6 @@ import { axiosInstance } from "./axios.js";
 import AWS from "aws-sdk";
 import dotenv from "dotenv";
 dotenv.config();
-console.log(process.env.AWS_ACCESS_KEY);
 AWS.config.update({
   accessKeyId: process.env.AWS_ACCESS_KEY,
   secretAccessKey: process.env.AWS_SECRET_KEY,
