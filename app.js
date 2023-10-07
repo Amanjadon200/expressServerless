@@ -1,7 +1,9 @@
 import express from "express";
 import { setHarryPotter, getHarryPotter } from "./dynamo.js";
+import ServerlessHttp from "serverless-http";
 const app = express();
 const port = process.env.PORT;
+	
 app.get("/", (req, res) => {
   res.send("hello world");
 });
@@ -24,3 +26,4 @@ app.get("/characters", async (req, res) => {
 app.listen("3000", () => {
   console.log("server is listening on", port);
 });
+module.exports.handler = ServerlessHttp(app);
