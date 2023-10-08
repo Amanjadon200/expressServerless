@@ -1,11 +1,13 @@
 import express from "express";
+import serverless from "serverless-http";
 import { setHarryPotter, getHarryPotter } from "./dynamo.js";
-import ServerlessHttp from "serverless-http";
 const app = express();
-const port = process.env.PORT;
-	
+// const port = process.env.PORT;
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.get("/", (req, res) => {
-  res.send("hello world");
+  console.log('hi aman')
+  return res.send("hello world");
 });
 app.post("/setCharacters", async (req, res) => {
   try {
@@ -23,7 +25,7 @@ app.get("/characters", async (req, res) => {
     return error;
   }
 });
-app.listen("3000", () => {
-  console.log("server is listening on", port);
-});
-module.exports.handler = ServerlessHttp(app);
+const handler=()=>{
+  serverless(app);
+}
+export {handler} 
